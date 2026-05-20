@@ -1,29 +1,44 @@
-from chatbot import create_chat_chain
+from agents.orchestrator import AgentOrchestrator
 
-chat_chain = create_chat_chain()
+orchestrator = AgentOrchestrator()
 
-print("Enterprise GenAI Assistant Ready")
+print("Enterprise Agentic AI Assistant Ready")
 print("Type 'exit' to quit\n")
 
 while True:
+
     query = input("You: ")
 
     if query.lower() == "exit":
         break
 
     try:
-        result = chat_chain.invoke(
-            {"question": query}
-        )
+
+        response = orchestrator.execute(query)
+
+        print("\nAgent Route:")
+        print(response.get("route"))
 
         print("\nBot:")
-        print(result["answer"])
 
-        print("\nSources:")
-        for doc in result["source_documents"]:
-            print(doc.metadata.get("source"))
+        result = response.get("result", {})
+
+        print(result.get("response"))
+
+        print("\nValidation:")
+
+        validation = response.get("validation", {})
+
+        print(
+            f"Validated: {validation.get('validated')}"
+        )
+
+        print(
+            f"Risk Score: {validation.get('risk_score')}"
+        )
 
         print("\n" + "-" * 50)
 
     except Exception as e:
+
         print(f"Error: {e}")

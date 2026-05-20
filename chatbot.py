@@ -23,14 +23,17 @@ VECTORSTORE_PATH = "vectorstore"
 # -----------------------------
 
 custom_prompt = """
-You are an enterprise HR assistant.
+You are an enterprise AI assistant.
 
-Use ONLY the provided context to answer the user's question.
+Use ONLY the provided context to answer.
 
-If the answer is not found in the context, say:
-"I could not find the answer in the provided documents."
-
-Provide concise, accurate, and professional responses.
+Rules:
+- Do not make up answers.
+- If answer is not found, say:
+  "I could not find relevant information."
+- Keep responses professional.
+- Do not generate inappropriate responses.
+- Cite retrieved information when possible.
 
 Context:
 {context}
@@ -118,3 +121,27 @@ def create_chat_chain():
     )
 
     return chat_chain
+
+def ask_rag(query):
+
+    chat_chain = create_chat_chain()
+
+    result = chat_chain.invoke(
+        {"question": query}
+    )
+
+    answer = result["answer"]
+
+    sources = []
+
+    for doc in result["source_documents"]:
+        sources.append(
+            doc.metadata.get("source")
+        )
+
+    final_response = f"{answer}\n\nSources:\n"
+
+    for source in sources:
+        final_response += f"- {source}\n"
+
+    return final_response
