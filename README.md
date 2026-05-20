@@ -1,21 +1,63 @@
-# Enterprise GenAI RAG Chatbot 🤖
+# 🚀 Enterprise Agentic AI RAG Platform
 
-A local Retrieval-Augmented Generation (RAG) chatbot built using LangChain, FAISS, and HuggingFace models.  
-This project demonstrates a full end-to-end GenAI pipeline for document-based question answering.
+A production-style **Agentic AI system** combining:
+- RAG (Retrieval-Augmented Generation)
+- SQL analytics agent
+- Conversational memory
+- Validation & governance layer
+- MLflow observability
 
----
-
-## 🚀 Features
-
-- PDF document ingestion
-- Text chunking using recursive splitters
-- Embedding generation using SentenceTransformers
-- FAISS vector database for semantic search
-- Conversational AI with memory support
-- Local LLM inference (no paid API required)
-- Source document citation support
-- Modular enterprise-style architecture
+This project demonstrates **enterprise-grade GenAI architecture** with modular multi-agent design.
 
 ---
 
-## 🏗️ Architecture
+## 🧠 Key Capabilities
+
+### 🔹 Agentic AI System
+- Planner-based routing (retrieval vs SQL)
+- Multi-agent orchestration
+- Modular agent architecture
+
+### 🔹 RAG Pipeline
+- Document ingestion
+- Vector embeddings
+- Semantic retrieval for context-aware answers
+
+### 🔹 SQL Analytics Agent
+- Natural language query execution
+- Data-driven insights from structured datasets
+
+### 🔹 Memory System
+- Maintains conversation history
+- Enables contextual responses
+
+### 🔹 Validation Layer
+- Response validation
+- Risk and safety checks
+
+### 🔹 MLflow Tracking
+- Logs queries, responses, and routes
+- Tracks experiment metadata
+- Enables observability for AI workflows
+
+---
+
+## 🏗️ Architecture Flow
+
+```text
+User Query
+    ↓
+Planner Agent
+    ↓
+-------------------------
+| Retrieval Agent (RAG) |
+| SQL Agent             |
+-------------------------
+    ↓
+Validation Agent
+    ↓
+Memory Store
+    ↓
+MLflow Tracking
+    ↓
+Final Response
